@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.header .logo {
+    margin-right: 50px;
+
+}
+
+.header .menu {
+    display: flex;
+    list-style-type: none;
+}
+
+.header .menu__item {
+    margin-right: 30px;
+    
+    cursor: pointer;
+}
+
+.header .menu__item__link {
+    text-decoration: none;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+.header .menu__item__link:hover {
+    background-color: rgba(165, 165, 165, 0.3);
+    border-radius: 5px;
+    
+}

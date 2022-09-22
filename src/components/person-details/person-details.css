@@ -1,0 +1,15 @@
+.person-details {
+    height: 170px;
+    padding: 10px;
+    background-color: #303030;
+    border-radius: 10px;
+}
+
+.person-details-img {
+    margin-right: 20px;
+}
+
+.person-details-img > img {
+    border-radius: 10px;
+    height: 150px;
+}
