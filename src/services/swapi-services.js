@@ -1,4 +1,4 @@
-class SwapiResources {
+ export default class SwapiResources {
     __APIBASE = 'https://swapi.dev/api/';
   
   
@@ -16,33 +16,73 @@ class SwapiResources {
   
     async getAllPeople() {
       const people = await this.getResources(`people/`);
-      return people.results;
+      return people.results.map(this._tranformPerson);
     };
   
     async getPerson(id) {
       const person = await this.getResources(`people/${id}`);
-      return person;
+      return this._tranformPerson(person);
     };
   
     async getAllPlanets() {
       const planets = await this.getResources(`planets/`);
-      return planets;
+      return planets.reaults.map(this._transformPlanet);
     };
   
     async getPlanet(id) {
       const planet = await this.getResources(`planets/${id}`);
-      return planet;
+      return this._transformPlanet(planet);
     };
   
     async getAllStartships() {
       const starships = await this.getResources(`starships/`);
-      return starships;
+      return starships.reaults.map(this._transformStartship);
     };
   
     async getStarship(id) {
       const startship = await this.getResources(`starships/${id}`);
-      return startship;
+      return this._transformStartship(startship);
     };
+
+
+    _extractId(item) {
+      const idRegExp = /\/([0-9])\/$/;
+      return item.url.match(idRegExp)[1];
+    }
+
+    _transformPlanet(planet) {
+      return {
+          id: this._extractId(planet),
+          name: planet.name,
+          population: planet.population,
+          rotationPeriod: planet.rotation_period,
+          diameter: planet.diameter,
+        };
+    };
+
+    _transformStartship(starship) {
+      return{
+        id: this._extractId(starship),
+        name: starship.name,
+        model: starship.model,
+        manufacturer: starship.manufacturer,
+        costIncredits: starship.costIncredits,
+        length: starship.length,
+        crew: starship.crew,
+        passengers: starship.passengers,
+        cargoCopacity: starship.cargoCopacity,
+      };
+    }
+
+    _tranformPerson(person) {
+      return {
+        id: this._extractId(person),
+        name: person.name,
+        gender: person.gender,
+        birthYear: person.birthYear,
+        eyeColor: person.eyeColor
+      };
+    }
   
   
   };

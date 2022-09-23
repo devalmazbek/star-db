@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SwapiService from '../../services/swapi-services';
+import SwapiResources from '../../services/swapi-services';
 
 // style
 import './random-planet.css';
@@ -7,40 +7,53 @@ import './random-planet.css';
 
 export default class RandomPlanet extends Component{
 
+    
+    SwapiResources= new SwapiResources();
     constructor() {
         super();
 
         this.state = {
-            id: null,
-            name: null,
-            population: null,
-            ratotionPeriod: null,
-            diametr: null
-        }
+            planet: {}
+        };
+
+        this.updatePlanet();
+    };
+
+    onPlanetLoaded = (planet) => {
+        this.setState({planet});
+    }
+
+
+    updatePlanet() {
+        const id = Math.floor(Math.random() * 10) + 2;
+        this.SwapiResources.getPlanet(id).then(this.onPlanetLoaded);   
     };
 
 
     render() {
+
+        const {planet: {id, name, population, rotationPeriod, diameter} } = this.state;
+        console.log(id);
         return(
             <div className="random__planet">
                 <div className="random__planet__container d-flex ">
                     <div className="random__planet__image">
-                        <img src="https://starwars-visualguide.com/assets/img/planets/5.jpg" alt="" />
+                        <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="" />
                     </div>
                     <div className="random__planet__info">
-                        <h3 className="mb-3">Random Planet</h3>
+                        <h3 className="mb-3">{name}</h3>
                         <ul className="list-group">
                             <li className="list-group-item">
                                 Population: 
-                                <span>21321</span>
+                                <span>{population}</span>
                             </li>
                             <li className="list-group-item">
                                 Raotation period: 
-                                <span>21321</span>
+                                <span>{rotationPeriod}</span>
                             </li>
                             <li className="list-group-item">
                                 Diameter: 
-                                <span>21321</span>
+                                <span>{diameter}</span>
                             </li>
                         </ul>
                     </div>
