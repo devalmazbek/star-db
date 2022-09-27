@@ -20,9 +20,7 @@ export default class RandomPlanet extends Component{
             error: false,
         };
 
-        this.setInterval(() => {
-            this.updatePlanet();
-        }, 3000);
+    this.updatePlanet();
 
         
     };
