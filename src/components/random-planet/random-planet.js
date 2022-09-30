@@ -11,18 +11,25 @@ export default class RandomPlanet extends Component{
 
     
     SwapiResources= new SwapiResources();
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
 
-        this.state = {
-            planet: {},
-            loading: true,
-            error: false,
-        };
-
-    this.updatePlanet();
+    //     this.state = {
+    //         
+    //     };
+        
 
         
+    // };
+
+    state = {
+        planet: {},
+        loading: true,
+        error: false,
+    }
+
+    componentDidMount(){
+        setInterval(() => {this.updatePlanet()}, 5000);
     };
 
     onPlanetLoaded = (planet) => {

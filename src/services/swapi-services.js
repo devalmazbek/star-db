@@ -45,12 +45,12 @@
     };
 
 
-    _extractId(item) {
-      const idRegExp = /\/([0-9])\/$/;
+    _extractId (item) {
+      const idRegExp = /\/([0-9]*)\/$/;
       return item.url.match(idRegExp)[1];
     }
 
-    _transformPlanet(planet) {
+    _transformPlanet = (planet) => {
       return {
           id: this._extractId(planet),
           name: planet.name,
@@ -60,7 +60,7 @@
         };
     };
 
-    _transformStartship(starship) {
+    _transformStartship = (starship) => {
       return{
         id: this._extractId(starship),
         name: starship.name,
@@ -74,14 +74,14 @@
       };
     }
 
-    _tranformPerson(person) {
+    _tranformPerson = (person) => {
       return {
         id: this._extractId(person),
         name: person.name,
         gender: person.gender,
-        birthYear: person.birthYear,
-        eyeColor: person.eyeColor
-      };
+        birthYear: person.birth_year,
+        eyeColor: person.eye_color
+      };  
     }
   
   
