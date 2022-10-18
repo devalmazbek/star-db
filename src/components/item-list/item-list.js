@@ -13,17 +13,18 @@ export default class ItemList extends Component {
 
     componentDidMount() {
         this.upDatePeople();
-    };
+    };    
 
-    onPeopleLoaded(people) {
-        // console.log(people);
-        this.setState({
-            allPeople: people
-        });
+    upDatePeople() {
+        this.SwapiResources.getAllPeople().then((people) => {
+            this.setState({
+                allPeople: people
+            });
+        })
         
     }
 
-   
+
 
     renderPeople(people) {
        
@@ -38,16 +39,8 @@ export default class ItemList extends Component {
         });
     }
 
-    upDatePeople() {
-        this.SwapiResources.getAllPeople().then((people) => {
-            this.onPeopleLoaded(people);
-        })
-    }
-
     render() {
-
-        const { allPeople }  = this.state;
-
+        const {allPeople} = this.state;
         if(!allPeople) return <Spinner />;
 
         const getPersonItem = this.renderPeople(allPeople);

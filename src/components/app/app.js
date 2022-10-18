@@ -9,13 +9,14 @@ import './app.css';
 export default class App extends Component {
 
     state = {
-        selectedPerson: 6
+        selectedPerson: 2
     };
 
     onPersonSelected = (id) => {
         this.setState({
             selectedPerson: id, 
         });
+        console.log(this.state.selectedPerson);
     };
 
     render() {
@@ -31,7 +32,7 @@ export default class App extends Component {
                         <ItemList onPersonSelected={this.onPersonSelected}/>
                     </div>
                     <div className="col-lg-6">
-                        <PersonDetails personIndex={this.state.selectedPerson}/>
+                        <PersonDetails personId={this.state.selectedPerson}/>
                     </div>
                 </div>
             </div> 
